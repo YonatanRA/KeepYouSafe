@@ -90,7 +90,7 @@ pesos=os.path.sep.join(['detector', 'res10_300x300_ssd_iter_140000.caffemodel'])
 net_cara=cv2.dnn.readNet(prototxt, pesos)
 
 # se carga el modelo detector de mascarillas
-net_mascara=load_model('detector_mascara.model')
+net_mascara=load_model('detector/detector_mascara.model')
 
 
 
