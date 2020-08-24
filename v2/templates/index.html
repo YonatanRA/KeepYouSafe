@@ -16,7 +16,12 @@
 	</style>
   </head>
 
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+
+
   <body>
+	
 
     <p style="font-family:lato;font-size:25px;">
          KeepYouSafe 
@@ -24,9 +29,27 @@
     
     
     <div class="img-container">
+		<form id='submit_params' method="POST" action="{{ url_for('video') }}">
     <img src="{{ url_for('video') }}">
+    
+
+    <div>
+    <SELECT class="selectpicker" name="modo">
+				          <option value="{{modo}}" selected>{{modo}}</option>
+				          <option value='mascara'>Mascara</option>
+				          <option value='distancia'>Distancia</option>
+				      </SELECT>
+	</div>
+	<div>
+	<button class="btn btn-default" type="submit" style="width: 100px; height: 30px;">Modo</button>	
+	</div>		      
+	</form>
     </div>
     
+    
+    
+    
+    	
     
   </body>
 
