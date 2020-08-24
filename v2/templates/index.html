@@ -32,22 +32,17 @@
 
     <img src="{{ url_for('video') }}">
     
-	<form id='submit_params' method="POST" action="{{ url_for('video') }}">		
+	<form id='submit_params' method="POST" action="{{ url_for('main') }}">		
 				<div>
-				<SELECT class="selectpicker" name="modo">
+				<SELECT class="selectpicker" name="modo" onchange='if(this.value != 0) { this.form.submit(); }'>
 									  <option value="{{modo}}" selected>{{modo}}</option>
+									  <option value='Camara'>Camara</option>
 									  <option value='Mascara'>Mascara</option>
 									  <option value='Distancia'>Distancia</option>
 								  </SELECT>
-				</div>
-	<button class="btn btn-default" type="submit" style="width: 100px; height: 30px;">Modo</button>		      
+				</div>	      
 	</form>
-    </div>
-    
-    
-    
-    
-    	
+    </div>	
     
   </body>
 
