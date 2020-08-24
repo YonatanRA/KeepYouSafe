@@ -1,0 +1,61 @@
+<html>
+
+    <title>KeepYouSafe</title>
+    
+		<style>
+	body {background-color: red;}
+	h1   {color: blue;}
+	p    {color: yellow;}
+	
+
+      .img-container {
+        text-align: center;
+      }
+
+
+	</style>
+  </head>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+
+	 <script>
+	function Foto() {
+
+	  $.post("/tomar_foto",
+	   function(){
+		 alert("Foto guardada");
+	   });
+	}
+	</script>
+
+
+  <body>
+	
+
+    <p style="font-family:lato;font-size:25px;">
+         KeepYouSafe 
+    </p>
+    
+    
+    <div class="img-container">
+
+    <img src="{{ url_for('video') }}">
+    
+	<form id='submit_params' method="POST" action="{{ url_for('main') }}">		
+				<div>
+				<SELECT class="selectpicker" name="modo" onchange='if(this.value != 0) { this.form.submit(); }'>
+									  <option value="{{modo}}" selected>{{modo}}</option>
+									  <option value='Camara'>Camara</option>
+									  <option value='Mascara'>Mascara</option>
+									  <option value='Distancia'>Distancia</option>
+								  </SELECT>
+				</div>	      
+	</form>
+   
+    <button onclick="Foto()"  type="submit" style="border-radius: 50%; background-color: #1eff5b; height: 100px; width: 100px; margin-left:0.5px; margin-right:0.5px; margin-top:0.5px; margin-bottom:0.5px">Foto</button> 
+     </div>	
+    
+  </body>
+
+</html>
