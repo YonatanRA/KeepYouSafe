@@ -1,5 +1,17 @@
 
+import cv2
+import time
+import imutils
+import os
+import numpy as np
 
+from math import pow, sqrt
+from imutils.video import FPS
+from imutils.video import VideoStream
+
+from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
+from tensorflow.keras.preprocessing.image import img_to_array
+from tensorflow.keras.models import load_model
 
 
 class Detector():
@@ -11,17 +23,16 @@ class Detector():
 		self.modelo=modelo
 		self.net_cara=net_cara
 		self.net_mascara=net_mascara
+		self.foto=None
 		
 		
 	# funcion camara
 	def camara(self):
 		
-		global foto
-		
 		while 1:
 			frame=self.cam.read()
-			frame=imutils.resize(frame, width=WIDTH)
-			foto=frame
+			frame=imutils.resize(frame, width=self.width)
+			self.foto=frame
 			frame=cv2.imencode('.jpg', frame)[1].tobytes()
 			
 			yield (b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
@@ -36,7 +47,7 @@ class Detector():
 	
 	
 	# funcion para detectar y predecir mascara
-	def detectar_mascara(frame, net_cara, net_mascara):
+	def detectar_mascara(self, frame, net_cara, net_mascara):
 		# se tomen las dimensiones del frame y se construye un blob desde ahi
 		h, w=frame.shape[:2]
 		blob=cv2.dnn.blobFromImage(frame, 1.0, (300, 300), (104.0, 177.0, 123.0))
@@ -86,18 +97,16 @@ class Detector():
 
 
 
-	def mascara():
+	def mascara(self):
     
-		global foto
-
 		# bucle sobre los frames
 		while 1:
 			# coge el frame del video y redimensiona a 800 pixels
 			frame=self.cam.read()
-			frame=imutils.resize(frame, width=WIDTH)
+			frame=imutils.resize(frame, width=self.width)
 
 			# detectar caras en el frame y determinar si hay o no mascara
-			locs, preds=detectar_mascara(frame, self.net_cara, self.net_mascara)
+			locs, preds=self.detectar_mascara(frame, self.net_cara, self.net_mascara)
 
 			# bucle sobre las caras detectadas y sus localizaciones
 			for caja, pred in zip(locs, preds):
@@ -116,7 +125,7 @@ class Detector():
 				cv2.rectangle(frame, (x_start, y_start), (x_end, y_end), color, 2)
 
 			# muestra el frame de salida
-			foto=frame
+			self.foto=frame
 			frame=cv2.imencode('.jpg', frame)[1].tobytes()
 			
 			
@@ -134,25 +143,22 @@ class Detector():
 
 		
 	
-	
 	# funcion para calcular la distancia social
-	def distancia():
-		
-		global foto
-		
+	def distancia(self):
+
 		fps=FPS().start()
 		
 		# bucle en el video
 		while 1:
 			frame=self.cam.read()
-			frame=imutils.resize(frame, width=WIDTH)  # 800 pixels de pantalla
+			frame=imutils.resize(frame, width=self.width)  # 800 pixels de pantalla
 			
 			
 			h, w=frame.shape[:2]
 			blob=cv2.dnn.blobFromImage(cv2.resize(frame, (300, 300)), .007843, (300, 300), 127.5)
 
-			modelo.setInput(blob)
-			detecciones=modelo.forward()
+			self.modelo.setInput(blob)
+			detecciones=self.modelo.forward()
 			
 			
 			F=615   # hiperparametro
@@ -221,7 +227,7 @@ class Detector():
 
 				cv2.rectangle(frame, (x, y), (w, h), color, 2)
 			
-			foto=frame
+			self.foto=frame
 			frame=cv2.imencode('.jpg', frame)[1].tobytes()
 
 			
@@ -243,3 +249,19 @@ class Detector():
 			
 			
 			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
