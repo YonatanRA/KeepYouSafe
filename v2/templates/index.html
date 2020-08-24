@@ -19,6 +19,16 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
 
+	 <script>
+	function Foto() {
+
+	  $.post("/tomar_foto",
+	   function(){
+		 alert("Foto guardada");
+	   });
+	}
+	</script>
+
 
   <body>
 	
@@ -42,7 +52,9 @@
 								  </SELECT>
 				</div>	      
 	</form>
-    </div>	
+   
+    <button onclick="Foto()"  type="submit" style="border-radius: 50%; background-color: #1eff5b; height: 100px; width: 100px; margin-left:0.5px; margin-right:0.5px; margin-top:0.5px; margin-bottom:0.5px">Foto</button> 
+     </div>	
     
   </body>
 
