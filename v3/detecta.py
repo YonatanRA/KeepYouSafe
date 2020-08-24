@@ -1,17 +1,15 @@
 
 import cv2
-import time
 import imutils
-import os
 import numpy as np
 
 from math import pow, sqrt
 from imutils.video import FPS
-from imutils.video import VideoStream
+
 
 from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
 from tensorflow.keras.preprocessing.image import img_to_array
-from tensorflow.keras.models import load_model
+
 
 
 class Detector():
