@@ -29,20 +29,18 @@
     
     
     <div class="img-container">
-		<form id='submit_params' method="POST" action="{{ url_for('video') }}">
+
     <img src="{{ url_for('video') }}">
     
-
-    <div>
-    <SELECT class="selectpicker" name="modo">
-				          <option value="{{modo}}" selected>{{modo}}</option>
-				          <option value='mascara'>Mascara</option>
-				          <option value='distancia'>Distancia</option>
-				      </SELECT>
-	</div>
-	<div>
-	<button class="btn btn-default" type="submit" style="width: 100px; height: 30px;">Modo</button>	
-	</div>		      
+	<form id='submit_params' method="POST" action="{{ url_for('video') }}">		
+				<div>
+				<SELECT class="selectpicker" name="modo">
+									  <option value="{{modo}}" selected>{{modo}}</option>
+									  <option value='Mascara'>Mascara</option>
+									  <option value='Distancia'>Distancia</option>
+								  </SELECT>
+				</div>
+	<button class="btn btn-default" type="submit" style="width: 100px; height: 30px;">Modo</button>		      
 	</form>
     </div>
     
