@@ -10,7 +10,7 @@ from detecta import Detector
 import time
 
 # necesario en pythonanywhere
-#PATH=os.path.dirname(os.path.abspath(__file__))
+PATH=os.path.dirname(os.path.abspath(__file__))
 
 # iniciaciliza la aplicacion
 app=Flask(__name__)
@@ -21,11 +21,11 @@ width=800   # pixeles imagen
 
 modo='Camara'  # modo camara
 
-modelo=cv2.dnn.readNetFromCaffe('detector/SSD_MobileNet_prototxt.txt', 'detector/SSD_MobileNet.caffemodel')
+modelo=cv2.dnn.readNetFromCaffe(PATH+'/detector/SSD_MobileNet_prototxt.txt', 'detector/SSD_MobileNet.caffemodel')
     
-net_cara=cv2.dnn.readNet('detector/deploy.prototxt', 'detector/res10_300x300_ssd_iter_140000.caffemodel')
+net_cara=cv2.dnn.readNet(PATH+'/detector/deploy.prototxt', 'detector/res10_300x300_ssd_iter_140000.caffemodel')
 
-net_mascara=load_model('detector/detector_mascara.model')
+net_mascara=load_model(PATH+'/detector/detector_mascara.model')
 
 detector=Detector(cam, width, modelo, net_cara, net_mascara)
 
