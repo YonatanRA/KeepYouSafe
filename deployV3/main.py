@@ -21,9 +21,9 @@ width=800   # pixeles imagen
 
 modo='Camara'  # modo camara
 
-modelo=cv2.dnn.readNetFromCaffe(PATH+'/detector/SSD_MobileNet_prototxt.txt', 'detector/SSD_MobileNet.caffemodel')
+modelo=cv2.dnn.readNetFromCaffe(PATH+'/detector/SSD_MobileNet_prototxt.txt', (PATH+'/detector/SSD_MobileNet.caffemodel')
     
-net_cara=cv2.dnn.readNet(PATH+'/detector/deploy.prototxt', 'detector/res10_300x300_ssd_iter_140000.caffemodel')
+net_cara=cv2.dnn.readNet(PATH+'/detector/deploy.prototxt', (PATH+/'detector/res10_300x300_ssd_iter_140000.caffemodel')
 
 net_mascara=load_model(PATH+'/detector/detector_mascara.model')
 
